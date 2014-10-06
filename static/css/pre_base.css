@@ -1,0 +1,148 @@
+.decorated_link {
+    color: #000000;
+}
+
+.decorated_link:hover {
+    background-color: #adadad;
+    text-decoration: none;
+    color: #000000;
+}
+
+.individual-tile {
+    width: 100%;
+    background-color: #dd9900;
+    min-height: 200px;
+    color: #336699;
+}
+
+.individual-tile:hover {
+    background-color: #eeaa11;
+}
+
+.enterprise-tile {
+    width: 100%;
+    background-color: #aadd00;
+    min-height: 200px;
+    color: #44aabb;
+}
+
+.enterprise-tile:hover {
+    background-color: #bbee11;
+}
+
+.track-tile {
+    width: 100%;
+    background-color: #449999;
+    min-height: 200px;
+    color: #bbeeff;
+}
+
+.track-tile:hover {
+    background-color: #55aaaa;
+}
+
+.colorgraph {
+    height: 3px;
+    border-top: 0;
+    background: #6e6e61;
+    border-radius: 3px;
+
+}
+
+.center-content {
+    display: block;
+    width: 700px;
+    margin: 0px auto 0px auto;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+strong.ui-state-error {
+    display: #bbeeff;
+    padding: 3px;
+    text-align: center;
+}
+
+.divDemoBody {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.divDemoBody p {
+    font-size: 18px;
+    line-height: 140%;
+    padding-top: 12px;
+}
+
+.divDialogElements input {
+    font-size: 18px;
+    padding: 3px;
+    height: 32px;
+    width: 500px;
+}
+
+.divButton {
+    padding-top: 12px;
+}
+
+.table-hover tbody tr:hover td {
+    background-color: #c6c6b0;
+}
+
+.font {
+    font-family: yekan, sans-serif;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: 700;
+    width: 100%;
+}
+.popup_font {
+    font-family: yekan, sans-serif;
+    font-size: 10pt;
+    font-style: normal;
+   }
+
+.input_font {
+    font-family: Nazanin;
+    font-size: 10pt;
+    font-style: normal;
+    font-weight: 700;
+    width: 100%;
+}
+
+.pre_border {
+    padding: 20px;
+    border-radius: 7px;
+    border: solid 1px black;
+}
+
+.pre_loan {
+    padding: 20px;
+    border-radius: 7px;
+    border: solid 1px black;
+}
+
+.pre_panel {
+    padding: 40px;
+    border-radius: 5px;
+    border: solid 1px black;
+}
+
+.radius {
+    border-radius: 4px
+}
+
+.message {
+    background-color: #ff9911;
+    color: #bb3333;
+}
+
+.popup {
+    width: 775px;
+}
+
+body {
+    margin: 50px;
+}

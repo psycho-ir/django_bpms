@@ -1,0 +1,147 @@
+{% load i18n %}
+{% load staticfiles %}
+{#{% load notification_tags %}#}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" type="text/css" rel="stylesheet">
+    <link href="{% static "bootstrap/css/bootstrap-theme.min.yeti.css" %}" rel="stylesheet">
+    <link href="{% static "css/persianDatepicker-default.css" %}" rel="stylesheet">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    {% block css %}{% endblock %}
+    {% block nocompress_css %} {% endblock %}
+</head>
+
+<body>
+<div id="body" class="row" style="margin:0px;">
+    <div class="alertBar alertBar-error "></div>
+    <div class="col-lg-2 " style=" padding-right:0px; padding-left:0px; border-left: solid 1px #bbbbbb;height: 100%;
+            background: url('{% static "image/base/sidebar.png" %}') repeat scroll 0 0 #E0E0E3;"
+         id="side-panel">
+        <div class="row menu-navbar">
+            <div class="col-xs-8" style="color: #cccccc;">
+                Demo User
+            </div>
+        </div>
+        <div class="menu-inner-container">
+            <form class="quick_search" style="padding-right: 10px;">
+                <div class="input-group">
+                    <span class="glyphicon glyphicon-search input-group-addon">
+{#                        <span class="" />#}
+                    </span>
+                    <input class="form-control" disabled="disabled" type="text" name="search" id="search"
+                           onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;"
+                           value="Fake Search">
+
+
+                </div>
+            </form>
+
+
+            <hr/>
+            <div class="panel-group" id="menu" style="padding-right: 10px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="menu-header" class="panel-title">
+                            <span>
+                            User menu
+                            </span>
+                            <span class="menu-pointer">
+                                <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div id="menu-body" class="panel-body">
+                        {% block menu_panel %}
+
+                            <div class="row">
+                                <a>
+                                    Settings
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="">
+                                    Exit
+                                </a>
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>
+                {% block actions %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <hr/>
+        <div class="bottom container text-center">
+            <hr />
+            <div>
+                Open source workflow engine <span class="glyphicon glyphicon-copyright-mark"></span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-xs-10" id="content">
+            {% block content %}
+            {% endblock %}
+    </div>
+</div>
+
+</body>
+
+
+<script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+<script src="{% static 'js/persianDatepicker.js' %}"></script>
+<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+<script src="{% static  'bootstrap/js/bootbox.min.js' %}"></script>
+<script src="{% static  'js/rose.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.maskMoney.js' %}"></script>
+{#<script type="text/javascript" src="{% static 'js/jquery.maskMoney.min.js' %}"></script>#}
+<script>
+    $(window).ready(function () {
+
+        if ($('.badge').text() > 0) {
+            $('#img_mail').addClass('blinking');
+        }
+        $('#content').css({'height': $(window).height()});
+        $('#side-panel').css({'height': $(window).height() + 'px'});
+
+        $(window).resize(function () {
+            $('#content').css({'height': $(window).height()});
+            $('#side-panel').css({'height': $(window).height() + 'px'});
+        });
+
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(window).ready(function () {
+        $('#menu-header').click(function () {
+            if ($('#menu-body').css('display') == 'none') {
+                $(this).find('#arrow').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-down');
+                $('#menu-body').show('slow');
+            }
+            else {
+                $(this).find('#arrow').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-left');
+                $('#menu-body').hide('slow');
+            }
+        });
+    });
+</script>
+{% block js %}
+{% endblock %}
+
+</html>
