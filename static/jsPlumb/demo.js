@@ -1,6 +1,7 @@
 jsPlumb.ready(function() {			
 		
 	var instance = jsPlumb.getInstance({
+        Container :$('.plumb-container'),
 		DragOptions : { cursor: "pointer", zIndex:2000 },
 		HoverClass:"connector-hover"
 	});

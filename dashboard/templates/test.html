@@ -1,32 +1,48 @@
 {% extends 'base_dashboard.html' %}
 {% load staticfiles %}
 {% block js %}
-{#    <script src="{% static "external/jquery-1.9.0-min.js" %}"></script>#}
-{#    <script src="{% static "external/jquery-ui-1.9.2.min.js" %}"></script>#}
-{#    <script src="{% static "external/jquery.ui.touch-punch-0.2.2.min.js" %}"></script>#}
-{#    <script src="{% static "lib/jsBezier-0.6.js" %}"></script>#}
-{#    <script src="{% static "lib/biltong-0.2.js" %}"></script>#}
-{#    <script src="{% static "src/util.js" %}"></script>#}
-{#    <script src="{% static "src/browser-util.js" %}"></script>#}
-{##}
-{#    <script src="{% static "src/dom-adapter.js" %}"></script>#}
-{##}
-{#    <script src="{% static "src/jsPlumb.js" %}"></script>#}
-{##}
-{#    <script src="{% static "src/endpoint.js" %}"></script>#}
-{##}
-{#    <script src="{% static "src/connection.js" %}"></script>#}
-{##}
-{#    <script src="{% static "src/anchors.js" %}"></script>#}
-{#    <script src="{% static "src/defaults.js" %}"></script>#}
-{#    <script src="{% static "src/connectors-bezier.js" %}"></script>#}
-{#    <script src="{% static "src/connectors-statemachine.js" %}"></script>#}
-{#    <script src="{% static  "src/connectors-flowchart.js" %}"></script>#}
-{#    <script src="{% static "src/renderers-svg.js" %}"></script>#}
-{#    <script src="{% static "src/renderers-vml.js" %}"></script>#}
-{#    <script src="{% static "src/connector-editors.js" %}"></script>#}
-{#    <script src="{% static "src/jquery.jsPlumb.js" %}"></script>#}
-{#    <script src="{% static "js/demo.js" %}"></script>#}
+    {#    <script src="{% static "external/jquery-1.9.0-min.js" %}"></script>#}
+    <script src="{% static "external/jquery-ui-1.9.2.min.js" %}"></script>
+    <script src="{% static "external/jquery.ui.touch-punch-0.2.2.min.js" %}"></script>
+    <script src="{% static "lib/jsBezier-0.6.js" %}"></script>
+    <script src="{% static "lib/biltong-0.2.js" %}"></script>
+    <script src="{% static "src/util.js" %}"></script>
+    <script src="{% static "src/browser-util.js" %}"></script>
+
+    <script src="{% static "src/dom-adapter.js" %}"></script>
+
+    <script src="{% static "src/jsPlumb.js" %}"></script>
+
+    <script src="{% static "src/endpoint.js" %}"></script>
+
+    <script src="{% static "src/connection.js" %}"></script>
+
+    <script src="{% static "src/anchors.js" %}"></script>
+    <script src="{% static "src/defaults.js" %}"></script>
+    <script src="{% static "src/connectors-bezier.js" %}"></script>
+    <script src="{% static "src/connectors-statemachine.js" %}"></script>
+    <script src="{% static  "src/connectors-flowchart.js" %}"></script>
+    <script src="{% static "src/renderers-svg.js" %}"></script>
+    <script src="{% static "src/renderers-vml.js" %}"></script>
+    <script src="{% static "src/connector-editors.js" %}"></script>
+    <script src="{% static "src/jquery.jsPlumb.js" %}"></script>
+    {#    <script src="{% static "jsPlumb/demo.js" %}"></script>#}
+    <script type="text/javascript">
+
+        jsPlumb.ready(function () {
+            jsPlumb.makeSource($('.item'), {
+                connector: 'StateMachine'
+            });
+            jsPlumb.makeTarget($('.item'), {
+                anchor: 'Continuous'
+            });
+
+            jsPlumb.bind('connection', function (info) {
+                console.log(info);
+                alert("News connection from " + info.sourceId + " to " + info.target.id + "  added.");
+            });
+        });
+    </script>
 {% endblock %}
 
 <html>
@@ -54,33 +70,18 @@
     </div>
 
 
-    <div id="main">
+    <div id="main" class="plumb-container">
+        <div id="state1" class="item"></div>
+        <div id="state2" class="item"></div>
+        <div id="state3" class="item"></div>
         <!-- demo -->
-        <div class="demo kitchensink-demo" id="kitchensink-demo">
-            <div class="explanation">
-                <i class="fa fa-info-circle"></i>
-                <h4>JSPLUMB</h4>
-
-                <p>jsPlumb provides a way to connect elements in a UI.</p>
-
-                <p>This page contains examples of the various types of connections you can make.</p>
-
-                <p>There are several other demonstrations that offer
-                    a more focused look at some specific part of jsPlumb's functionality - pick one from the drop down or cycle through Next/Previous.
-                </p>
-
-                <p>jsPlumb requires one of jQuery, MooTools or YUI3. See the documentation for a more detailed discussion of requirements.</p>
-
-                <p>This demonstration uses jsPlumb 1.6.4, jQuery 1.9.0 and jQuery UI 1.9.2.For touch support, jQuery Touch Punch is used.</p>
-            </div>
-            <div class="component window" id="window1"><strong>Window 1</strong></div>
-            <div class="component window" id="window2"><strong>Window 2</strong></div>
-            <div class="component window" id="window3"><strong>Window 3</strong></div>
-            <div class="component window" id="window4"><strong>Window 4</strong></div>
-            <div class="component window" id="window5"><strong>Window 5</strong></div>
-            <div class="component window" id="window6"><strong>Window 6</strong></div>
-            <div class="component window" id="window7"><strong>Window 7</strong></div>
-        </div>
+        {#            <div class="component window" id="window1"><strong>Window 1</strong></div>#}
+        {#            <div class="component window" id="window2"><strong>Window 2</strong></div>#}
+        {#            <div class="component window" id="window3"><strong>Window 3</strong></div>#}
+        {#            <div class="component window" id="window4"><strong>Window 4</strong></div>#}
+        {#            <div class="component window" id="window5"><strong>Window 5</strong></div>#}
+        {#            <div class="component window" id="window6"><strong>Window 6</strong></div>#}
+        {#            <div class="component window" id="window7"><strong>Window 7</strong></div>#}
         <!-- /demo -->
     </div>
 {% endblock %}
