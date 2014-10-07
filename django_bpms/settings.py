@@ -95,3 +95,11 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+# ####################### Validator implementations will be added here ################
+# Fake Template for future
+######################################################################################
+
+######################## Activity implementations will be added here ################
+# Fake Template for future
+######################################################################################
