@@ -1,8 +1,9 @@
 {% load staticfiles %}
 <html>
 <head>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" >
     <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
-  <script src="{% static "external/jquery-ui-1.9.2.min.js" %}"></script>
+    <script src="{% static "external/jquery-ui-1.9.2.min.js" %}"></script>
     <script src="{% static "external/jquery.ui.touch-punch-0.2.2.min.js" %}"></script>
     <script src="{% static "lib/jsBezier-0.6.js" %}"></script>
     <script src="{% static "lib/biltong-0.2.js" %}"></script>
@@ -26,6 +27,9 @@
     <script src="{% static "src/renderers-vml.js" %}"></script>
     <script src="{% static "src/connector-editors.js" %}"></script>
     <script src="{% static "src/jquery.jsPlumb.js" %}"></script>
+    <script src="{% static "js/bpm_js/activity.js" %}"></script>
+    <script src="{% static "js/bpm_js/start_activity.js" %}"></script>
+    <script src="{% static "js/bpm_js/menu_handler.js" %}"></script>
     <style type="text/css">
         .item {
             position: absolute;
@@ -47,26 +51,58 @@
         .connect {
             width: 100%;
             height: 20px;
-            background-color: white;
-            cursor: pointer;
+{#            background-color: white;#}
+{#            cursor: pointer;#}
+{#            z-index: -10;#}
         }
+
+        .human-activity {
+            cursor: move;
+            text-align: center;
+            position: absolute;
+            border-radius: 4px;
+            border: 1px solid black;
+            background-color: #ddddff;
+            width: 120px;
+            min-height: 60px;
+        }
+
+        .activity {
+            position: absolute;
+        }
+
+        {#       .start {#}
+        {#           border-radius: 100px;#}
+        {#       }#}
     </style>
     <title>Getting started with jsPlumb</title>
 </head>
 <body>
+<div id="items">
+    <div id="start">start</div>
+    <div id="human-task">Human Task</div>
+    <div id="end">end</div>
+</div>
 <div id="container"></div>
+
 </body>
 <script type="text/javascript">
     var options = ['To do', 'In progress', 'Done'];
     jsPlumb.ready(function () {
+        jsPlumb.setContainer($('#container'));
         var i = 0;
-        var saveState = function (state) {
-            $.post('http://www.example.com/saveState', {
-                id: $(state).attr('id'),
-                top: $(state).position().top,
-                left: $(state).position().left
-            });
-        }
+        {#        var saveState = function (state) {#}
+        {#            $.post('http://www.example.com/saveState', {#}
+        {#                id: $(state).attr('id'),#}
+        {#                top: $(state).position().top,#}
+        {#                left: $(state).position().left#}
+        {#            });#}
+        {#        }#}
+        {#        h = new Activity('h', 'human task');#}
+        {#        h.add($('#container'));#}
+        {#        a = new Activity('a', 'human task');#}
+        {#        a.add($('#container'));#}
+
         $('#container').dblclick(function (e) {
             var newState = $('<div>').attr('id', 'state' + i).addClass('item');
             var title = $('<div>').addClass('title');
@@ -92,7 +128,7 @@
                 containment: 'parent',
                 stop: function (event) {
                     if ($(event.target).find('select').length == 0) {
-                        saveState(event.target);
+                        {#                        saveState(event.target);#}
                     }
                 }
             });
@@ -114,14 +150,14 @@
                         parent: newState,
                         anchor: 'Continuous'
                     });
-                    saveState(state);
+                    {#                    saveState(state);#}
                 }
             });
             stateName.focus();
             i++;
         });
         jsPlumb.bind('connection', function (info) {
-            $.post('http://www.example.com/saveConnection', { from: info.sourceId, to: info.targetId});
+            {#            $.post('http://www.example.com/saveConnection', { from: info.sourceId, to: info.targetId});#}
         });
     });
 </script>

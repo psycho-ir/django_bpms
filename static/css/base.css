@@ -29,6 +29,7 @@
     padding-right: 0px;
     padding-left: 0px;
 }
+
 .bottom div {
     padding-bottom: 10px;
 }
@@ -57,38 +58,118 @@ hr {
     width: 100%;
 }
 
-#window1 {  top:5em;left:4em;}
-#window2 { top:17em; left:49em;}
-#window3 { top:31em;left:4em; }
-#window4 { top:9em; left:28em;}
-#window5 {top:45em;left:33em;}
-#window6 {top:30em;left:64em;}
-#window7 {top:52em;left:6em;}
-#window8 {left:66em;top:32em;}
+#window1 {
+    top: 5em;
+    left: 4em;
+}
+
+#window2 {
+    top: 17em;
+    left: 49em;
+}
+
+#window3 {
+    top: 31em;
+    left: 4em;
+}
+
+#window4 {
+    top: 9em;
+    left: 28em;
+}
+
+#window5 {
+    top: 45em;
+    left: 33em;
+}
+
+#window6 {
+    top: 30em;
+    left: 64em;
+}
+
+#window7 {
+    top: 52em;
+    left: 6em;
+}
+
+#window8 {
+    left: 66em;
+    top: 32em;
+}
 
 .item {
-  border: 1px solid black;
-  background-color: #ddddff;
-  width: 100px;
-  height: 100px;
+    border: 1px solid black;
+    background-color: #ddddff;
+    width: 100px;
+    height: 100px;
 }
 
 #state1 {
-  position: absolute;
-  left: 100px;
-  top: 100px;
+    position: absolute;
+    left: 100px;
+    top: 100px;
 }
 
 #state2 {
-  position: absolute;
-  left: 250px;
-  top: 100px;
+    position: absolute;
+    left: 250px;
+    top: 100px;
 }
 
 #state3 {
-  position: absolute;
-  left: 100px;
-  top: 250px;
+    position: absolute;
+    left: 100px;
+    top: 250px;
+}
+
+/* shapes */
+
+[data-shape=Rectangle] {
+    width: 210px;
+    height: 70px;
+    left: 380px;
+    top: 505px;
+    line-height: 70px;
+    background-image: url('../image/shapes/rectangle.png');
+}
+
+[data-shape=Ellipse] {
+    width: 210px;
+    height: 70px;
+    left: 250px;
+    top: 300px;
+    line-height: 70px;
+    background-image: url('../image/shapes/ellipse.png');
+}
+
+[data-shape=Circle] {
+    width: 30px;
+    height: 30px;
+    background-image: url('../image/shapes/circle.png');
+}
+
+[data-shape=Triangle] {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    background-image: url('../image/shapes/triangle.png');
+}
+
+._90[data-shape=Triangle] {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    background-image: url('../image/shapes/triangle_90.png');
+}
+
+[data-shape=Diamond] {
+    width: 150px;
+    height: 150px;
+    left: 550px;
+    top: 150px;
+    line-height: 150px;
+    background-image: url('../image/shapes/diamond.png');
 }
 
 /*body {*/
