@@ -5,19 +5,25 @@
 window.activities = {}
 
 function Activity(name, label_name, type) {
+    if (window.activities[name]) {
+        alert('you cannot add an activity more than one time!')
+        throw new Exception();
+    }
     this.name = name;
     this.label_name = label_name;
     this.type = type;
     this.activity = null;
+    this.activity_id = 'activity_' + this.name;
+    this.end_points = []
 }
 
 Activity.prototype.get_object = function () {
+    obj = this;
     if (this.activity) {
         return this.activity;
     }
-    _activity_id = 'activity_' + this.name;
 
-    var _activity = $('<div>').attr('id', _activity_id).addClass('human-activity');
+    var _activity = $('<div>').attr('id', this.activity_id).addClass('human-activity');
     var connect = $('<div>').addClass('connect');
     _activity.append($('<div>').text(this.label_name));
     _activity.css({
@@ -32,21 +38,18 @@ Activity.prototype.get_object = function () {
         }
     });
 
-//    jsPlumb.makeTarget(_activity, {
-//        anchor: ["Continuous", { faces: [ "bottom" ] } ],
-//        paintStyle: { fillStyle: "red" }
-//    });
-//
-//    jsPlumb.makeSource(connect, {
-//        parent: _activity,
-//        anchor: ["Continuous", { faces: [ "bottom" ] } ],
-//        paintStyle: { fillStyle: "purple" }
-//    });
-
 
     _activity.dblclick(function (e) {
+        jsPlumb.deleteEndpointsOnDetach = true;
         jsPlumb.detachAllConnections($(this));
         $(this).remove();
+        console.log(obj.end_points);
+        for (var i = 0; i < obj.end_points.length; i++) {
+            console.log(obj.end_points[i]);
+            jsPlumb.deleteEndpoint(obj.end_points[i]);
+        }
+        obj.end_points = []
+        delete window.activities[obj.name];
         e.stopPropagation();
     });
 
@@ -56,17 +59,12 @@ Activity.prototype.get_object = function () {
 }
 
 Activity.prototype.add = function (container) {
-    _activity_id = 'activity_' + this.name;
     var object = this.get_object();
-    if (window.activities[this.name]) {
-        alert('you cannot add an activity more than one time!')
-        return;
-    }
     window.activities[this.name] = object;
     container.append(object);
     var endpointOptionsSource = {
         isSource: true,
-        endpoint: [ "Rectangle", { width: 10, height: 20 } ],
+        endpoint: [ "Dot", { radius: 4 } ],
         style: {color: 'blue'},
         maxConnections: -1,
         connector: "Straight",
@@ -99,7 +97,7 @@ Activity.prototype.add = function (container) {
     };
 
 
-    jsPlumb.addEndpoint(_activity_id, endpointOptionsSource);
-    jsPlumb.addEndpoint(_activity_id, endpointOptionsTarget);
+    this.end_points.push(jsPlumb.addEndpoint(this.activity_id, endpointOptionsSource));
+    this.end_points.push(jsPlumb.addEndpoint(this.activity_id, endpointOptionsTarget));
 }
 

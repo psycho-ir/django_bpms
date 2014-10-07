@@ -1,11 +1,14 @@
-
 $(document).ready(function () {
     $('#start').click(function () {
-        new StartActivity("start","Start Label").add($('#container'));
+        var a = new StartActivity("start", "Start Label")
+        a.add($('#container'));
+        console.log(a);
     });
 
-    $('#human-task').click(function(){
-        new Activity("Human-Task1","First Human Task").add($('#container'));
+    $('#human-task').click(function () {
+        var b = new Activity("Human-Task1", "First Human Task");
+        b.add($('#container'));
+        console.log(b);
     });
 });
 

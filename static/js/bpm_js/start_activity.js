@@ -6,15 +6,17 @@ function StartActivity(name, label_name) {
     this.name = name;
     this.label_name = label_name;
     this.activity = null;
+    this.activity_id = 'activity_' + this.name;
+    this.end_points = []
 }
 
 StartActivity.prototype.get_object = function () {
+    obj = this;
     if (this.activity) {
         return this.activity;
     }
-    _activity_id = 'activity_' + this.name;
 
-    var _activity = $('<div>').attr('data-shape', 'Circle').attr('id', _activity_id).addClass('activity');
+    var _activity = $('<div>').attr('data-shape', 'Circle').attr('id', this.activity_id).addClass('activity');
     var connect = $('<div>').addClass('connect');
 //    _activity.append($('<div>').text(this.label_name));
     _activity.css({
@@ -30,8 +32,16 @@ StartActivity.prototype.get_object = function () {
     });
 
     _activity.dblclick(function (e) {
+        jsPlumb.deleteEndpointsOnDetach = true;
         jsPlumb.detachAllConnections($(this));
         $(this).remove();
+
+        for (var i = 0; i < obj.end_points.length; i++) {
+            console.log(obj.end_points[i]);
+            jsPlumb.deleteEndpoint(obj.end_points[i]);
+        }
+        obj.end_points = []
+        delete window.activities[obj.name];
         e.stopPropagation();
     });
 
@@ -41,12 +51,12 @@ StartActivity.prototype.get_object = function () {
 }
 
 StartActivity.prototype.add = function (container) {
-    _activity_id = 'activity_' + this.name;
-    var object = this.get_object();
     if (window.activities[this.name]) {
-        alert('you cannot add an activity more than one time!')
+        alert('Currently you have an activity with this name!')
         return;
     }
+    var object = this.get_object();
+
     window.activities[this.name] = object;
     container.append(object);
     var endpointOptionsSource = {
@@ -66,7 +76,7 @@ StartActivity.prototype.add = function (container) {
 
     };
 
-    jsPlumb.addEndpoint(_activity_id, endpointOptionsSource);
+    this.end_points.push(jsPlumb.addEndpoint(this.activity_id, endpointOptionsSource));
 }
 
 

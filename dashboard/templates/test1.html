@@ -39,7 +39,7 @@
 
         #container {
             border: 1px solid gray;
-            width: 500px;
+            width: 100%;
             height: 500px;
         }
 
@@ -60,11 +60,15 @@
             cursor: move;
             text-align: center;
             position: absolute;
-            border-radius: 4px;
-            border: 1px solid black;
-            background-color: #ddddff;
-            width: 120px;
+            border-radius: 7px;
+            border: 2px solid black;
+            background-color: #eecc88;
+            width: 150px;
             min-height: 60px;
+        }
+        .human-activity div {
+            margin-top: 20px;
+            font-size: 9pt;
         }
 
         .activity {
@@ -103,59 +107,59 @@
         {#        a = new Activity('a', 'human task');#}
         {#        a.add($('#container'));#}
 
-        $('#container').dblclick(function (e) {
-            var newState = $('<div>').attr('id', 'state' + i).addClass('item');
-            var title = $('<div>').addClass('title');
-            var stateName = $('<select>');
-            stateName.append($('<option></option>').attr('value', '#').text('Select an option'));
-            $.each(options, function (key, value) {
-                if ($('#container').find('#state-' + key).length == 0) {
-                    stateName.append($('<option></option>')
-                                             .attr('value', key)
-                                             .text(value));
-                }
-            });
-            title.append(stateName);
-            var connect = $('<div>').addClass('connect');
-            newState.css({
-                             'top': e.pageY,
-                             'left': e.pageX
-                         });
-            newState.append(title);
-            newState.append(connect);
-            $('#container').append(newState);
-            jsPlumb.draggable(newState, {
-                containment: 'parent',
-                stop: function (event) {
-                    if ($(event.target).find('select').length == 0) {
+{#        $('#container').dblclick(function (e) {#}
+{#            var newState = $('<div>').attr('id', 'state' + i).addClass('item');#}
+{#            var title = $('<div>').addClass('title');#}
+{#            var stateName = $('<select>');#}
+{#            stateName.append($('<option></option>').attr('value', '#').text('Select an option'));#}
+{#            $.each(options, function (key, value) {#}
+{#                if ($('#container').find('#state-' + key).length == 0) {#}
+{#                    stateName.append($('<option></option>')#}
+{#                                             .attr('value', key)#}
+{#                                             .text(value));#}
+{#                }#}
+{#            });#}
+{#            title.append(stateName);#}
+{#            var connect = $('<div>').addClass('connect');#}
+{#            newState.css({#}
+{#                             'top': e.pageY,#}
+{#                             'left': e.pageX#}
+{#                         });#}
+{#            newState.append(title);#}
+{#            newState.append(connect);#}
+{#            $('#container').append(newState);#}
+{#            jsPlumb.draggable(newState, {#}
+{#                containment: 'parent',#}
+{#                stop: function (event) {#}
+{#                    if ($(event.target).find('select').length == 0) {#}
                         {#                        saveState(event.target);#}
-                    }
-                }
-            });
-            newState.dblclick(function (e) {
-                jsPlumb.detachAllConnections($(this));
-                $(this).remove();
-                e.stopPropagation();
-            });
-            stateName.change(function (e) {
-                if (this.value !== '#') {
-                    var state = $(this).closest('.item');
-                    state.children('.title').text($(this).find(':selected').text());
-                    state.attr('id', 'state-' + this.value);
-                    $("select option[value='" + this.value + "']").remove();
-                    jsPlumb.makeTarget(newState, {
-                        anchor: 'Continuous'
-                    });
-                    jsPlumb.makeSource(connect, {
-                        parent: newState,
-                        anchor: 'Continuous'
-                    });
+{#                    }#}
+{#                }#}
+{#            });#}
+{#            newState.dblclick(function (e) {#}
+{#                jsPlumb.detachAllConnections($(this));#}
+{#                $(this).remove();#}
+{#                e.stopPropagation();#}
+{#            });#}
+{#            stateName.change(function (e) {#}
+{#                if (this.value !== '#') {#}
+{#                    var state = $(this).closest('.item');#}
+{#                    state.children('.title').text($(this).find(':selected').text());#}
+{#                    state.attr('id', 'state-' + this.value);#}
+{#                    $("select option[value='" + this.value + "']").remove();#}
+{#                    jsPlumb.makeTarget(newState, {#}
+{#                        anchor: 'Continuous'#}
+{#                    });#}
+{#                    jsPlumb.makeSource(connect, {#}
+{#                        parent: newState,#}
+{#                        anchor: 'Continuous'#}
+{#                    });#}
                     {#                    saveState(state);#}
-                }
-            });
-            stateName.focus();
-            i++;
-        });
+{#                }#}
+{#            });#}
+{#            stateName.focus();#}
+{#            i++;#}
+{#        });#}
         jsPlumb.bind('connection', function (info) {
             {#            $.post('http://www.example.com/saveConnection', { from: info.sourceId, to: info.targetId});#}
         });
