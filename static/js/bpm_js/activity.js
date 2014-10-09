@@ -6,8 +6,7 @@ window.activities = {}
 
 function Activity(name, label_name, type) {
     if (window.activities[name]) {
-        alert('you cannot add an activity more than one time!')
-        throw new Exception();
+        throw 'you cannot add an activity more than one time!';
     }
     this.name = name;
     this.label_name = label_name;
@@ -18,6 +17,7 @@ function Activity(name, label_name, type) {
 }
 
 Activity.prototype.get_object = function () {
+    console.log(this);
     obj = this;
     if (this.activity) {
         return this.activity;

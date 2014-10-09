@@ -3,6 +3,9 @@
  */
 
 function StartActivity(name, label_name) {
+    if (window.activities[name]) {
+        throw 'Currently you have an activity with this name!';
+    }
     this.name = name;
     this.label_name = label_name;
     this.activity = null;
@@ -11,12 +14,13 @@ function StartActivity(name, label_name) {
 }
 
 StartActivity.prototype.get_object = function () {
-    obj = this;
+    var obj = this;
     if (this.activity) {
         return this.activity;
     }
 
     var _activity = $('<div>').attr('data-shape', 'Circle').attr('id', this.activity_id).addClass('activity');
+    _activity._obj = this;
     var connect = $('<div>').addClass('connect');
 //    _activity.append($('<div>').text(this.label_name));
     _activity.css({
@@ -35,7 +39,6 @@ StartActivity.prototype.get_object = function () {
         jsPlumb.deleteEndpointsOnDetach = true;
         jsPlumb.detachAllConnections($(this));
         $(this).remove();
-
         for (var i = 0; i < obj.end_points.length; i++) {
             console.log(obj.end_points[i]);
             jsPlumb.deleteEndpoint(obj.end_points[i]);
@@ -51,10 +54,6 @@ StartActivity.prototype.get_object = function () {
 }
 
 StartActivity.prototype.add = function (container) {
-    if (window.activities[this.name]) {
-        alert('Currently you have an activity with this name!')
-        return;
-    }
     var object = this.get_object();
 
     window.activities[this.name] = object;
