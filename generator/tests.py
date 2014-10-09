@@ -24,6 +24,9 @@ class ProjectGeneratorTestCase(TestCase):
     def test_create_urls_correctly(self):
         project_generator.create_urls(project_name)
 
+    def test_create_wsgi_correctly(self):
+        project_generator.create_wsgi(project_name)
+
 
 
 

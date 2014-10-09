@@ -46,6 +46,12 @@ def create_urls(project_name):
     content = template.render(Context({}))
     create_file(core_package_address, 'urls.py', content)
 
+def create_wsgi(project_name):
+    core_package_address = os.path.join(output_address, project_name, project_name)
+    template = loader.get_template('wsgi.tmpl')
+    content = template.render(Context({'project_name':project_name}))
+    create_file(core_package_address, 'wsgi.py', content)
+
 
 
 
