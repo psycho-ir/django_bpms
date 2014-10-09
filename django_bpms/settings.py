@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'dashboard'
+    'dashboard',
+    'generator',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,9 +97,11 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
+OUTPUT_ADDRESS = '/home/soroosh/temp/bpms_out'
+
 # ####################### Validator implementations will be added here ################
 # Fake Template for future
-######################################################################################
+# #####################################################################################
 
 ######################## Activity implementations will be added here ################
 # Fake Template for future
