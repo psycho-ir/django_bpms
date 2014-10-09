@@ -27,6 +27,9 @@ class ProjectGeneratorTestCase(TestCase):
     def test_create_wsgi_correctly(self):
         project_generator.create_wsgi(project_name)
 
+    def test_create_setttings_correctly(self):
+        project_generator.create_settings(project_name)
+
 
 
 
